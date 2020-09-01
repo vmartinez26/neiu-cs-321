@@ -1,6 +1,4 @@
-# Application Name: 
-
-Unofficial Valorant Ranker
+# Application Name: Unofficial Valorant Ranker
 
 # Project Topic/Objective:
 
