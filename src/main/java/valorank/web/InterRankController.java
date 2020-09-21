@@ -1,23 +1,38 @@
 package valorank.web;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import valorank.Rank;
 import valorank.Rank.Type;
 
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Controller
 @RequestMapping("/interiorrank")
 public class InterRankController {
 
     @GetMapping
     public String showDesignForm(){return "interiorrank";}
+
+    @PostMapping
+    public String processInteriorRank(@Valid @ModelAttribute("interiorrank") RankName design/*temp name*/,
+                                      Errors errors){
+        if (errors.hasErrors())
+            return "interiorrank";
+        //Save the rank
+        log.info("Proccesing..." + design);
+        return "redirect:/rank/current";
+    }
 
     @ModelAttribute
     public void addAttributes(Model model){
@@ -26,6 +41,7 @@ public class InterRankController {
         for (Type type: types){
             model.addAttribute(type.toString().toLowerCase(), filterByType(ranks, type));
         }
+        model.addAttribute("interiorrank",new RankName());
     }
 
     private List<Rank> filterByType(List<Rank> ranks, Type type){

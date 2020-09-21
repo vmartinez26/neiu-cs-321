@@ -5,7 +5,7 @@ xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Exact Rank</title>
-    <link rel="stylesheet" th:href="@{styles.css}">
+    <link rel="stylesheet" th:href="@{css/styles.css}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
@@ -15,82 +15,96 @@ xmlns:th="http://www.thymeleaf.org">
     <h2>Declare your current rank</h2>
     <!--future plan is to cut out the individual "medals" for each rank and put them alongside
      their corresponding rank-->
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="row-3" id="unrated">
-                    <div th:each="rank : ${unrated}">
-                        <input name="ranks" type="radio" th:value="${rank.id}"/>
-                        <span th:text="${rank.name}">RANK</span>
+    <form method="post" action=""th:object="${interiorrank}">
+        <span class="validationError"
+              th:if="${#fields.hasErrors('ranks')}"
+        th:errors="*{ranks}">Rank Error</span>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="row-3" id="unrated">
+                        <div th:each="rank : ${unrated}">
+                            <input name="ranks" type="radio" th:value="${rank.id}"/>
+                            <span th:text="${rank.name}">RANK</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="row-3" id="iron">
-                    <div th:each="rank : ${iron}">
-                        <input name="ranks" type="radio" th:value="${rank.id}"/>
-                        <span th:text="${rank.name}">RANK</span>
+                <div class="col">
+                    <div class="row-3" id="iron">
+                        <div th:each="rank : ${iron}">
+                            <input name="ranks" type="radio" th:value="${rank.id}"/>
+                            <span th:text="${rank.name}">RANK</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="row-3" id="bronze">
-                    <div th:each="rank : ${bronze}">
-                        <input name="ranks" type="radio" th:value="${rank.id}"/>
-                        <span th:text="${rank.name}">RANK</span>
+                <div class="col">
+                    <div class="row-3" id="bronze">
+                        <div th:each="rank : ${bronze}">
+                            <input name="ranks" type="radio" th:value="${rank.id}"/>
+                            <span th:text="${rank.name}">RANK</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="row-3" id="silver">
-                    <div th:each="rank : ${silver}">
-                        <input name="ranks" type="radio" th:value="${rank.id}"/>
-                        <span th:text="${rank.name}">RANK</span>
+                <div class="col">
+                    <div class="row-3" id="silver">
+                        <div th:each="rank : ${silver}">
+                            <input name="ranks" type="radio" th:value="${rank.id}"/>
+                            <span th:text="${rank.name}">RANK</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="row-3" id="gold">
-                    <div th:each="rank : ${gold}">
-                        <input name="ranks" type="radio" th:value="${rank.id}"/>
-                        <span th:text="${rank.name}">RANK</span>
+                <div class="col">
+                    <div class="row-3" id="gold">
+                        <div th:each="rank : ${gold}">
+                            <input name="ranks" type="radio" th:value="${rank.id}"/>
+                            <span th:text="${rank.name}">RANK</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="row-3" id="platinum">
-                    <div th:each="rank : ${platinum}">
-                        <input name="ranks" type="radio" th:value="${rank.id}"/>
-                        <span th:text="${rank.name}">RANK</span>
+                <div class="col">
+                    <div class="row-3" id="platinum">
+                        <div th:each="rank : ${platinum}">
+                            <input name="ranks" type="radio" th:value="${rank.id}"/>
+                            <span th:text="${rank.name}">RANK</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="row-3" id="diamond">
-                    <div th:each="rank : ${diamond}">
-                        <input name="ranks" type="radio" th:value="${rank.id}"/>
-                        <span th:text="${rank.name}">RANK</span>
+                <div class="col">
+                    <div class="row-3" id="diamond">
+                        <div th:each="rank : ${diamond}">
+                            <input name="ranks" type="radio" th:value="${rank.id}"/>
+                            <span th:text="${rank.name}">RANK</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="row-3" id="immortal">
-                    <div th:each="rank : ${immortal}">
-                        <input name="ranks" type="radio" th:value="${rank.id}"/>
-                        <span th:text="${rank.name}">RANK</span>
+                <div class="col">
+                    <div class="row-3" id="immortal">
+                        <div th:each="rank : ${immortal}">
+                            <input name="ranks" type="radio" th:value="${rank.id}"/>
+                            <span th:text="${rank.name}">RANK</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="row-3" id="radiant">
-                    <div th:each="rank : ${radiant}">
-                        <input name="ranks" type="radio" th:value="${rank.id}"/>
-                        <span th:text="${rank.name}">RANK</span>
+                <div class="col">
+                    <div class="row-3" id="radiant">
+                        <div th:each="rank : ${radiant}">
+                            <input name="ranks" type="radio" th:value="${rank.id}"/>
+                            <span th:text="${rank.name}">RANK</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <div>
+            <h3>Which Character is your favorite?</h3>
+            <input type="text" th:field="*{name}"/>
+            <span class="validationError"
+            th:if="${#fields.hasErrors('name')}"
+            th:errors="*{name}">Name Error</span>
+            <br/><br/>
+            <button>Submit your current rank!</button>
+        </div>
+    </form>
     <!--I thought I had to do this code three times but when I rank the first one
      all my items were here NICE!-->
 
