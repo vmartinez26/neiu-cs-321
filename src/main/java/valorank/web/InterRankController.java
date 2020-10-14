@@ -1,6 +1,7 @@
 package valorank.web;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import valorank.Rank;
 import valorank.Rank.Type;
+import valorank.RankName;
+import valorank.data.RankNameRepo;
+import valorank.data.RankRepository;
 
 import javax.validation.Valid;
 import java.util.Arrays;
@@ -21,27 +25,43 @@ import java.util.stream.Collectors;
 @RequestMapping("/interiorrank")
 public class InterRankController {
 
+    private final RankRepository rankRepo;
+    private final RankNameRepo rankNameRepo;
+
+    @Autowired
+    public InterRankController(RankRepository rankRepo, RankNameRepo rankNameRepo){
+        this.rankRepo = rankRepo;
+        this.rankNameRepo = rankNameRepo;
+    }
+
     @GetMapping
     public String showDesignForm(){return "interiorrank";}
 
     @PostMapping
-    public String processInteriorRank(@Valid @ModelAttribute("interiorrank") RankName design/*temp name*/,
+    public String processInteriorRank(@Valid @ModelAttribute("interiorrank") RankName rankName/*temp name*/,
                                       Errors errors){
         if (errors.hasErrors())
             return "interiorrank";
-        //Save the rank
-        log.info("Proccesing..." + design);
+
+        RankName savedRankName = rankNameRepo.save(rankName);
+
+        log.info("Proccesing..." + rankName);
         return "redirect:/rank/current";
     }
 
     @ModelAttribute
     public void addAttributes(Model model){
-        List<Rank> ranks = createRankingList();
+        List<Rank> ranks = (List<Rank>) rankRepo.findAll();
         Type[] types = Rank.Type.values();
         for (Type type: types){
             model.addAttribute(type.toString().toLowerCase(), filterByType(ranks, type));
         }
-        model.addAttribute("interiorrank",new RankName());
+
+    }
+
+    @ModelAttribute(name = "rankName")
+    public RankName addRankNameToModel(){
+        return new RankName();
     }
 
     private List<Rank> filterByType(List<Rank> ranks, Type type){
@@ -51,7 +71,7 @@ public class InterRankController {
                 .collect(Collectors.toList());
     }
 
-    private List<Rank> createRankingList(){
+    /*private List<Rank> createRankingList(){
         List<Rank> ranks = Arrays.asList(
                 new Rank("UR", "Unrated", Type.UNRATED),
                 new Rank("I1", "Iron One", Type.IRON),
@@ -83,5 +103,5 @@ public class InterRankController {
 
         return ranks;
 
-    }
+    }*/
 }

@@ -15,11 +15,12 @@ xmlns:th="http://www.thymeleaf.org">
     <h2>Declare your current rank</h2>
     <!--future plan is to cut out the individual "medals" for each rank and put them alongside
      their corresponding rank-->
-    <form method="post" action=""th:object="${interiorrank}">
+    <form method="post" action=""th:object="${rankName}">
         <span class="validationError"
               th:if="${#fields.hasErrors('ranks')}"
         th:errors="*{ranks}">Rank Error</span>
         <div class="container">
+            <div class="row">
             <div class="row">
                 <div class="col">
                     <div class="row-3" id="unrated">
@@ -96,7 +97,7 @@ xmlns:th="http://www.thymeleaf.org">
             </div>
         </div>
         <div>
-            <h3>Which Character is your favorite?</h3>
+            <h3>What is your in game name?</h3>
             <input type="text" th:field="*{name}"/>
             <span class="validationError"
             th:if="${#fields.hasErrors('name')}"
