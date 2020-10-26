@@ -9,10 +9,12 @@ xmlns:th="http://www.thymeleaf.org">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Select Your Current Rank</h1>
-    <img th:src="@{images/VALORANT_ICONS_2.jpg}" alt=""/>
 
-    <h2>Declare your current rank</h2>
+    <div class="text-center">
+        <h1>Select Your Current Rank</h1>
+    <img th:src="@{images/VALORANT_ICONS_2.jpg}" class="img-fluid" alt=""/>
+    </div>
+    <h2 class="text-center">Declare your current rank</h2>
     <!--future plan is to cut out the individual "medals" for each rank and put them alongside
      their corresponding rank-->
     <form method="post" action=""th:object="${rankName}">
@@ -97,14 +99,28 @@ xmlns:th="http://www.thymeleaf.org">
             </div>
         </div>
         <div>
-            <h3>What is your in game name?</h3>
-            <input type="text" th:field="*{name}"/>
+            <label for="ign">What is your in game name?</label>
+            <input type="text" th:field="*{name}" id="ign"/>
             <span class="validationError"
             th:if="${#fields.hasErrors('name')}"
             th:errors="*{name}">Name Error</span>
             <br/><br/>
+            <div>
+                <label for="gamesPlayed">Roughly how many games have you played?</label>
+                <input type="text" th:field="*{gamesPlayed}" id="gamesPlayed"/>
+                <span class="validationError" th:if="${#fields.hasErrors('gamesPlayed')}"
+                      th:errors="*{gamesPlayed}">Games Played error</span><br/><br/>
+            </div>
+            <div>
+                <label for="gamesWon">In the last ten games how many have you won?</label>
+                <input type="text" th:field="*{lastTenGameW}" id="gamesWon"/>
+                <span class="validationError" th:if="${#fields.hasErrors('lastTenGameW')}"
+                      th:errors="*{lastTenGameW}">Ten Games Played error</span><br/><br/>
+            </div>
+
             <button>Submit your current rank!</button>
         </div>
+
     </form>
     <!--I thought I had to do this code three times but when I rank the first one
      all my items were here NICE!-->

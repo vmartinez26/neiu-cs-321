@@ -5,13 +5,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Show Rank Name</title>
+    <link rel="stylesheet" th:href="@{css/styles.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 </head>
 <body>
+<div id="theranker">
+<div class="text-center">
+    <h1>UnValorank</h1>
+    <img th:src="@{images/phoenixjett.jpg}" class="img-fluid" alt="">
+</div>
+</div>
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>In Game Name</th>
+        <th>Rank</th>
+        <th>Games Played</th>
+        <th>Wins in Last Ten Games</th>
+    </tr>
+    </thead>
+
 <tr th:each="RankName : ${showrn}">
-    <td th:text="${RankName.id}"> show ID</td>
-    <td th:text="${RankName.name}">IGN</td>
-    <td th:text="${RankName.ranks}">rank</td>
+
+    <td th:text="*{RankName.id}"> show ID</td>
+    <td th:text="*{RankName.name}">IGN</td>
+    <td th:text="*{RankName.ranks.name}">rank</td>
+    <td th:text="*{RankName.gamesPlayed}">games played</td>
+    <td th:text="*{RankName.lastTenGameW}">Wins in last ten games</td>
+<!--
+    could be a way of showing the rankings just need to add values to specific ranks
+-->
 </tr>
-//need to figure out how to show the rank name in a normal format but this is PROGRESS!!!!
+</table>
 </body>
 </html>

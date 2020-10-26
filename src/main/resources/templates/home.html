@@ -5,11 +5,20 @@ xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Unvalorank</title>
+    <link rel="stylesheet" th:href="@{css/styles.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 </head>
 <body>
+
+    <div class="text-center">
     <h1>UnValorank</h1>
     <h2>The unofficial Valorant ranker</h2>
-    <img th:src="@{images/homeimg.jpg}" alt=""/>
+    </div>
+
+    <div class="text-center">
+    <img class="img-fluid" th:src="@{images/homeimg.jpg}" alt=""/>
+    </div>
     <!--make the image smaller-->
 
     <footer>

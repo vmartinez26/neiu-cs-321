@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RankingController {
     @GetMapping("/current")
     public String showRank(){
-        return "showRank";
+        return "showrank";
     }
 }

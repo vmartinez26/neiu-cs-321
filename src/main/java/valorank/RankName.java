@@ -20,14 +20,23 @@ public class RankName {
     private Long id;
     private LocalDateTime createdAt;
 
-    @NotNull(message = "Name is required")
-    @Size(min = 3, message = "Name must be at least 3 characters long")
+    @NotNull(message = "In-Game-Name is required")
+    @Size(min = 2, message = "Name must be at least 2 characters long")
     private String name;
 
+    @NotNull( message = "Please enter rough estimate of ranked games played")
+    private int gamesPlayed;
+
+    @NotNull(message = "Please enter number of wins in the last ten ranked games played")
+    private int lastTenGameW;
+
+    //could add a method to count num of days in specific rank
+
     //OnetoOne????? One IGN can only have rank
-    @ManyToMany(targetEntity = Rank.class)
-    @NotEmpty(message = "You must choose one rank")
-    private List<Rank> ranks;
+    @ManyToOne(targetEntity = Rank.class)
+
+    private Rank ranks;
+
 
     @PrePersist
     void createdAt(){
