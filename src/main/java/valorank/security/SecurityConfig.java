@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import static org.hibernate.criterion.Restrictions.and;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -40,8 +42,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
                 .antMatchers("/h2-console/**")
                 .permitAll()
+            .and()
+                .formLogin().loginPage("/login").defaultSuccessUrl("/interiorrank")
+            .and()
+                .logout().logoutSuccessUrl("/")
+            ;
+
        /* The lines 45-52 were added to try make the changes that you had suggested making and to make sure that
-        it was affecting my database the way I inteded it to be working */
+        it was affecting my database the way I inteded it to be working *//*
         //anything after this will have to be deleted
                 .and()
                 .authorizeRequests()
@@ -51,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/showrank")
                 .permitAll();
-        //stop here
+        //stop here*/
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import valorank.Rank;
 import valorank.Rank.Type;
 import valorank.RankName;
+import valorank.User;
 import valorank.data.RankNameRepo;
 import valorank.data.RankRepository;
 
@@ -47,6 +48,10 @@ public class InterRankController {
 
         log.info("Proccesing..." + rankName);
         return "redirect:/rank/current";
+    }
+
+    private void addUserInfoToModel(Model model, User user){
+        model.addAttribute("username", user.getUsername());
     }
 
     @ModelAttribute

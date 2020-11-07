@@ -5,8 +5,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import valorank.User;
 import valorank.data.UserRepository;
+
+import java.util.List;
 
 @Service
 public class UserRepositoryUserDetailsService implements UserDetailsService {
@@ -25,4 +28,6 @@ public class UserRepositoryUserDetailsService implements UserDetailsService {
             return user;
         throw new UsernameNotFoundException("User " + username + " not found");
     }
+
+
 }

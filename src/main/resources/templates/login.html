@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns ="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Unvalorank Login</title>
+    <link rel="stylesheet" th:href="@{css/styles.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="text-center">
+    <h1>Login for Unvalorank</h1>
+
+    <img class="img-fluid" th:src="@{images/homeimg.jpg}" alt=""/>
+    </div>
+
+
+
+    <div th:if="${error}">
+        Unable to login . Check your username and password.
+    </div>
+    <div class="text-center">
+        <p>New here? Click <a th:href="@{/register}">here</a> to register.</p>
+
+        <form method="post" th:action="@{/login}" id="LoginForm">
+            <label for="username">Username:</label>
+            <input type="text" th:name="username" id="username"/><br/><br/>
+
+            <label for="password">Password</label>
+            <input type="text" th:name="password" id="password"/><br/><br/>
+
+            <input type="submit" th:value="Login">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,7 +1,7 @@
 /*
 delete from Rank;
 delete from Rank_Name;
-
+delete from User;
 
 
 insert into Rank(id, name, type)

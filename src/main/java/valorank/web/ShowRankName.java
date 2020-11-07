@@ -1,11 +1,14 @@
 package valorank.web;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import valorank.RankName;
+import valorank.User;
 import valorank.data.RankNameRepo;
 
 import java.util.List;
@@ -30,5 +33,10 @@ public class ShowRankName {
     public List<RankName> showrn(){
         return rankNameRepo.findAll();
     }
-    //Still need to figure out how to get the single rank name from
+
+    @ModelAttribute
+    public void addUser(Model model, @AuthenticationPrincipal User user){
+        String username = user.getUsername();
+        model.addAttribute("username",username);
+    }
 }
