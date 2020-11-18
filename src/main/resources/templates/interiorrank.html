@@ -6,15 +6,51 @@ xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
     <title>Exact Rank</title>
     <link rel="stylesheet" th:href="@{css/styles.css}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}">
 </head>
-<body>
+<body class="why">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <span class="navbar-brand">UnValorank</span>
+        <button class="navbar-toggler" type="button"
+                data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navBarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/' ? 'active' : '' }">
+                    <a class="nav-link" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/login' ? 'active' : '' }"
+                    th:if="${#authentication.getName().equals('anonymousUser')}">
+                    <a class="nav-link" th:href="@{/login}">Login</a>
+                </li>
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/register' ? 'active' : '' }"
+                    th:if="${#authentication.getName().equals('anonymousUser')}">
+                    <a class="nav-link" th:href="@{/register}">Register</a>
+                </li>
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/interiorrank' ? 'active' : '' }"
+                    th:if="${!#authentication.getName().equals('anonymousUser')}">
+                    <a class="nav-link" th:href="@{/interiorrank}">Rank set</a>
+                </li>
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/showrankname' ? 'active' : '' }"
+                    th:if="${!#authentication.getName().equals('anonymousUser')}">
+                    <a class="nav-link" th:href="@{/showrankname}">Leaderboard</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
 
 <a href=""></a>
     </div>
     <div class="text-center">
         <h1>Select Your Current Rank</h1>
-    <img th:src="@{images/VALORANT_ICONS_2.jpg}" class="img-fluid" alt=""/>
+    <img class="img-fluid col-md-12 col-sm-8" th:src="@{images/VALORANT_ICONS_2.jpg}" alt=""/>
     </div>
     <h2 class="text-center">Declare your current rank</h2>
     <!--future plan is to cut out the individual "medals" for each rank and put them alongside
@@ -101,35 +137,42 @@ xmlns:th="http://www.thymeleaf.org">
             </div>
         </div>
         <div>
-            <label for="ign">What is your in game name?</label>
-            <input type="text" th:field="*{name}" id="ign"/>
+            <div class="row form-group justify-content-start">
+            <label class="col-form-label col-2  font-weight-bold" for="ign">What is your in game name?</label>
+            <input class="form-control col-5 col-md-2" type="text" th:field="*{name}" id="ign"/>
             <span class="validationError"
             th:if="${#fields.hasErrors('name')}"
             th:errors="*{name}">Name Error</span>
+            </div>
             <br/><br/>
-            <div>
-                <label for="gamesPlayed">Roughly how many games have you played?</label>
-                <input type="text" th:field="*{gamesPlayed}" id="gamesPlayed"/>
+
+            <div class="row form-group justify-content-start">
+                <label class="col-form-label col-2 font-weight-bold" for="gamesPlayed">Roughly how many games have you played?</label>
+                <input class="form-control col-5 col-md-2" type="text" th:field="*{gamesPlayed}" id="gamesPlayed"/>
                 <span class="validationError" th:if="${#fields.hasErrors('gamesPlayed')}"
                       th:errors="*{gamesPlayed}">Games Played error</span><br/><br/>
             </div>
-            <div>
-                <label for="gamesWon">In the last ten games how many have you won?</label>
-                <input type="text" th:field="*{lastTenGameW}" id="gamesWon"/>
+            <div class="row form-group justify-content-start">
+                <label class="col-form-label col-2 font-weight-bold" for="gamesWon">In the last ten games how many have you won?</label>
+                <input class="form-control col-5 col-md-2" type="text" th:field="*{lastTenGameW}" id="gamesWon"/>
                 <span class="validationError" th:if="${#fields.hasErrors('lastTenGameW')}"
                       th:errors="*{lastTenGameW}">Ten Games Played error</span><br/><br/>
             </div>
 
-            <button>Submit your current rank!</button>
+            <div class="row form-group justify-content-start">
+            <button class="btn btn-outline-danger btn-lg">Submit your current rank!</button>
+            </div>
         </div>
 
-            <a th:href="@{/showrankname}">See where you are currently ranked!</a>
+   <!--         <a th:href="@{/showrankname}">See where you are currently ranked!</a>-->
 
     </form>
     <!--I thought I had to do this code three times but when I rank the first one
      all my items were here NICE!-->
 
-
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.16.0/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
 
 
 

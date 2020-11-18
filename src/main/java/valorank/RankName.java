@@ -28,6 +28,7 @@ public class RankName {
     private int gamesPlayed;
 
     @NotNull(message = "Please enter number of wins in the last ten ranked games played")
+    //@Size(min = 0,max = 10, message = "Please enter a number that is 10 or less" )
     private int lastTenGameW;
 
     //could add a method to count num of days in specific rank
@@ -37,6 +38,8 @@ public class RankName {
 
     private Rank ranks;
 
+    @ManyToOne
+    private User user;
 
     @PrePersist
     void createdAt(){

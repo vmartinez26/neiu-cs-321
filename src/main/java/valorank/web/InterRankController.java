@@ -2,6 +2,7 @@ package valorank.web;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -40,10 +41,11 @@ public class InterRankController {
 
     @PostMapping
     public String processInteriorRank(@Valid @ModelAttribute("interiorrank") RankName rankName/*temp name*/,
-                                      Errors errors){
+                                      Errors errors, @AuthenticationPrincipal User user){
         if (errors.hasErrors())
             return "interiorrank";
 
+        rankName.setUser(user);
         RankName savedRankName = rankNameRepo.save(rankName);
 
         log.info("Proccesing..." + rankName);

@@ -6,12 +6,49 @@
     <meta charset="UTF-8">
     <title>Show Rank Name</title>
     <link rel="stylesheet" th:href="@{css/styles.css}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}">
 
 </head>
 <body>
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <span class="navbar-brand">UnValorank</span>
+    <button class="navbar-toggler" type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navBarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/' ? 'active' : '' }">
+                <a class="nav-link" th:href="@{/}">Home</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/login' ? 'active' : '' }"
+                th:if="${#authentication.getName().equals('anonymousUser')}">
+                <a class="nav-link" th:href="@{/login}">Login</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/register' ? 'active' : '' }"
+                th:if="${#authentication.getName().equals('anonymousUser')}">
+                <a class="nav-link" th:href="@{/register}">Register</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/interiorrank' ? 'active' : '' }"
+                th:if="${!#authentication.getName().equals('anonymousUser')}">
+                <a class="nav-link" th:href="@{/interiorrank}">Rank set</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/showrankname' ? 'active' : '' }"
+                th:if="${!#authentication.getName().equals('anonymousUser')}">
+                <a class="nav-link" th:href="@{/showrankname}">Leaderboard</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
 <h3 class="text-center" th:text="${'Hello ' + username}"></h3>
+
 <button><a href="/logout">Logout</a></button>
 <div id="theranker">
 <div class="text-center">
@@ -42,6 +79,28 @@
     could be a way of showing the rankings just need to add values to specific ranks
 -->
 </tr>
+
+
 </table>
+
+<h2 class="text-center">Your rank History</h2>
+<table class="table table-dark">
+    <thead>
+    <tr>
+        <th>Rank</th>
+        <th>Games Played</th>
+        <th>Wins in Last Ten Games</th>
+    </tr>
+    </thead>
+    <tr th:each="RankName : ${indUser}">
+        <td th:text="${RankName.ranks.name}"></td>
+        <td th:text="${RankName.gamesPlayed}"></td>
+        <td th:text="${RankName.lastTenGameW}"></td>
+    </tr>
+</table>
+
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.16.0/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
 </body>
 </html>

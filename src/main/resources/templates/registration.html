@@ -6,42 +6,96 @@
     <meta charset="UTF-8">
     <title>Register</title>
     <link rel="stylesheet" th:href="@{css/styles.css}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}">
 
 </head>
-<body>
+<body class="why">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <span class="navbar-brand">UnValorank</span>
+    <button class="navbar-toggler" type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navBarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/' ? 'active' : '' }">
+                <a class="nav-link" th:href="@{/}">Home</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/login' ? 'active' : '' }"
+                th:if="${#authentication.getName().equals('anonymousUser')}">
+                <a class="nav-link" th:href="@{/login}">Login</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/register' ? 'active' : '' }"
+                th:if="${#authentication.getName().equals('anonymousUser')}">
+                <a class="nav-link" th:href="@{/register}">Register</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/interiorrank' ? 'active' : '' }"
+                th:if="${!#authentication.getName().equals('anonymousUser')}">
+                <a class="nav-link" th:href="@{/interiorrank}">Rank set</a>
+            </li>
+            <li class="nav-item" th:classappend="${#request.getServletPath() == '/showrankname' ? 'active' : '' }"
+                th:if="${!#authentication.getName().equals('anonymousUser')}">
+                <a class="nav-link" th:href="@{/showrankname}">Leaderboard</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
     <div class="text-center">
         <h1>Register for Unvalorank</h1>
-        <img class="img-fluid" th:src="@{images/homeimg.jpg}" alt=""/>
+        <img class="img-fluid col-md-12 col-sm-8" th:src="@{images/homeimg.jpg}" alt=""/>
 
 
-        <form method="post" th:action="@{/register}" th:object="${registrationForm}">
-            <label for="username">Username:</label>
-            <input type="text" th:name="username" th:value="*{username}" id="username">
+        <form class="mr-lg-5" method="post" th:action="@{/register}" th:object="${registrationForm}">
+            <div class="row form-group justify-content-center">
+            <label class="col-form-label col-2 text-right font-weight-bold" for="username">Username:</label>
+            <input class="form-control col-5 col-md-2" type="text" th:name="username" th:value="*{username}" id="username">
             <span class="validationError" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</span><br/><br/>
+            </div>
 
-            <label for="password">Password:</label>
-            <input type="password" th:name="password" th:value="*{password}" id="password">
+            <div class="row form-group justify-content-center">
+            <label class="col-form-label col-2 text-right font-weight-bold" for="password">Password:</label>
+            <input class="form-control col-5 col-md-2" type="password" th:name="password" th:value="*{password}" id="password">
             <span class="validationError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span><br/><br/>
+            </div>
 
-            <label for="name">Name:</label>
-            <input type="text" th:name="fullname" th:value="*{getFullName}" id="name">
-            <span class="validationError" th:if="${#fields.hasErrors('fullname')}" th:errors="*{getFullName}">Name Error</span><br/><br/>
+            <div class="row form-group justify-content-center">
+            <label class="col-form-label col-2 text-right font-weight-bold" for="name">Name:</label>
+            <input class="form-control col-5 col-md-2" type="text" th:name="fullName" th:value="*{fullName}" id="name">
+            <span class="validationError" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Name Error</span><br/><br/>
+            </div>
 
-            <label for="email">Email:</label>
-            <input type="text" th:name="email" th:value="*{email}" id="email">
+            <div class="row form-group justify-content-center">
+            <label class="col-form-label col-2 text-right font-weight-bold" for="email">Email:</label>
+            <input class="form-control col-5 col-md-2" type="text" th:name="email" th:value="*{email}" id="email">
             <span class="validationError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span><br/><br/>
+            </div>
 
-            <label for="city">City:</label>
-            <input type="text" th:name="city" th:value="*{city}" id="city">
+            <div class="row form-group justify-content-center">
+            <label class="col-form-label col-2 text-right font-weight-bold" for="city">City:</label>
+            <input class="form-control col-5 col-md-2" type="text" th:name="city" th:value="*{city}" id="city">
             <span class="validationError" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">City Error</span><br/><br/>
+            </div>
 
-            <label for="state">State:</label>
-            <input type="text" th:name="state" th:value="*{state}" id="state">
+            <div class="row form-group justify-content-center">
+            <label class="col-form-label col-2 text-right font-weight-bold" for="state">State:</label>
+            <input class="form-control col-5 col-md-2" type="text" th:name="state" th:value="*{state}" id="state">
             <span class="validationError" th:if="${#fields.hasErrors('state')}" th:errors="*{state}">State Error</span><br/><br/>
+            </div>
 
-            <input type="submit" value="Register"><br/>
+            <div class="row form-group justify-content-center">
+                <span class="col-6 col-md-3"></span>
+                <input class="col-1" type="submit" value="Register"><br/>
+            </div>
         </form>
     </div>
+
+    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/1.16.0/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
 </body>
 </html>

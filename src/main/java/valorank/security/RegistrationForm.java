@@ -22,7 +22,8 @@ public class RegistrationForm {
     private String password;
 
     @NotNull
-    @NotEmpty(message = "Name is required")
+    @Size(min = 2)
+    @NotEmpty( message = "Name is required")
     private String fullName;
 
     @NotNull
