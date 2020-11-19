@@ -24,7 +24,7 @@ spring:
     password:
     driver: org.h2.Driver
 
-    valorank:
-      rankname:
-        pageSize: 10
+valorank:
+  rankname:
+    pageSize: 10
 ---
