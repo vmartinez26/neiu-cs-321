@@ -2,52 +2,12 @@
 <html lang="en"
 xmlns ="http://www.w3.org/1999/xhtml"
 xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Exact Rank</title>
-    <link rel="stylesheet" th:href="@{css/styles.css}">
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}">
-</head>
+<head th:insert="fragments/base :: headContent"></head>
 <body class="why">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <span class="navbar-brand">UnValorank</span>
-        <button class="navbar-toggler" type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navBarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item" th:classappend="${#request.getServletPath() == '/' ? 'active' : '' }">
-                    <a class="nav-link" th:href="@{/}">Home</a>
-                </li>
-                <li class="nav-item" th:classappend="${#request.getServletPath() == '/login' ? 'active' : '' }"
-                    th:if="${#authentication.getName().equals('anonymousUser')}">
-                    <a class="nav-link" th:href="@{/login}">Login</a>
-                </li>
-                <li class="nav-item" th:classappend="${#request.getServletPath() == '/register' ? 'active' : '' }"
-                    th:if="${#authentication.getName().equals('anonymousUser')}">
-                    <a class="nav-link" th:href="@{/register}">Register</a>
-                </li>
-                <li class="nav-item" th:classappend="${#request.getServletPath() == '/interiorrank' ? 'active' : '' }"
-                    th:if="${!#authentication.getName().equals('anonymousUser')}">
-                    <a class="nav-link" th:href="@{/interiorrank}">Rank set</a>
-                </li>
-                <li class="nav-item" th:classappend="${#request.getServletPath() == '/showrankname' ? 'active' : '' }"
-                    th:if="${!#authentication.getName().equals('anonymousUser')}">
-                    <a class="nav-link" th:href="@{/showrankname}">Leaderboard</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<div th:replace="fragments/base :: navigation"></div>
 
 
-<a href=""></a>
-    </div>
     <div class="text-center">
         <h1>Select Your Current Rank</h1>
     <img class="img-fluid col-md-12 col-sm-8" th:src="@{images/VALORANT_ICONS_2.jpg}" alt=""/>
@@ -60,7 +20,7 @@ xmlns:th="http://www.thymeleaf.org">
               th:if="${#fields.hasErrors('ranks')}"
         th:errors="*{ranks}">Rank Error</span>
         <div class="container">
-            <div class="row">
+
             <div class="row">
                 <div class="col">
                     <div class="row-3" id="unrated">
@@ -136,7 +96,6 @@ xmlns:th="http://www.thymeleaf.org">
                 </div>
             </div>
         </div>
-
         <div>
             <div class="row form-group justify-content-start">
             <label class="col-form-label col-2  font-weight-bold" for="ign">What is your in game name?</label>
@@ -170,10 +129,9 @@ xmlns:th="http://www.thymeleaf.org">
     </form>
     <!--I thought I had to do this code three times but when I rank the first one
      all my items were here NICE!-->
+    <div th:replace="fragments/base :: foot"></div>
 
-<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/1.16.0/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
+    <div th:replace="fragments/base :: scripts"></div>
 
 
 

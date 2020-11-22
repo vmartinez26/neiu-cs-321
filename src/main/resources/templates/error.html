@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/base :: headContent"></head>
+<body class="why">
+
+<div th:replace="fragments/base :: navigation"></div>
+
+<div class="col-12 text-center">
+    <h1>UnValorank</h1>
+    <h2>The unofficial Valorant ranker</h2>
+</div>
+
+<div class="container-fluid ml-5">
+    <div class="row justify-content-center">
+        <h2>So yeah it seems like this page let the spike explode...</h2>
+    </div>
+</div>
+
+<div class="text-center mt-2">
+    <img class="img-fluid col-md-12 col-sm-8" th:src="@{images/homeimg.jpg}" alt=""/>
+
+</div>
+<!--make the image smaller-->
+
+<div th:replace="fragments/base :: foot"></div>
+
+<div th:insert="fragments/base :: scripts"></div>
+</body>
+</html>

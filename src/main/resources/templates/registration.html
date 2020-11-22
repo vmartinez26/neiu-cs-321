@@ -2,49 +2,9 @@
 <html lang="en"
       xmlns ="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-    <link rel="stylesheet" th:href="@{css/styles.css}">
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}">
-
-</head>
+<head th:insert="fragments/base :: headContent"></head>
 <body class="why">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <span class="navbar-brand">UnValorank</span>
-    <button class="navbar-toggler" type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navBarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item" th:classappend="${#request.getServletPath() == '/' ? 'active' : '' }">
-                <a class="nav-link" th:href="@{/}">Home</a>
-            </li>
-            <li class="nav-item" th:classappend="${#request.getServletPath() == '/login' ? 'active' : '' }"
-                th:if="${#authentication.getName().equals('anonymousUser')}">
-                <a class="nav-link" th:href="@{/login}">Login</a>
-            </li>
-            <li class="nav-item" th:classappend="${#request.getServletPath() == '/register' ? 'active' : '' }"
-                th:if="${#authentication.getName().equals('anonymousUser')}">
-                <a class="nav-link" th:href="@{/register}">Register</a>
-            </li>
-            <li class="nav-item" th:classappend="${#request.getServletPath() == '/interiorrank' ? 'active' : '' }"
-                th:if="${!#authentication.getName().equals('anonymousUser')}">
-                <a class="nav-link" th:href="@{/interiorrank}">Rank set</a>
-            </li>
-            <li class="nav-item" th:classappend="${#request.getServletPath() == '/showrankname' ? 'active' : '' }"
-                th:if="${!#authentication.getName().equals('anonymousUser')}">
-                <a class="nav-link" th:href="@{/showrankname}">Leaderboard</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
+    <div th:replace="fragments/base :: navigation"></div>
     <div class="text-center">
         <h1>Register for Unvalorank</h1>
         <img class="img-fluid col-md-12 col-sm-8" th:src="@{images/homeimg.jpg}" alt=""/>
@@ -94,8 +54,7 @@
         </form>
     </div>
 
-    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/1.16.0/umd/popper.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
+    <div th:replace="fragments/base :: foot"></div>
+    <div th:replace="fragments/base :: scripts"></div>
 </body>
 </html>
