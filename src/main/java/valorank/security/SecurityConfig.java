@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .antMatchers("/interiorrank")
+            .antMatchers("/interiorrank", "/modify/**", "/rank/current")
                 .hasRole("USER")
                 .and()
             .authorizeRequests()
@@ -48,18 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().logoutSuccessUrl("/")
             ;
 
-       /* The lines 45-52 were added to try make the changes that you had suggested making and to make sure that
-        it was affecting my database the way I inteded it to be working *//*
-        //anything after this will have to be deleted
-                .and()
-                .authorizeRequests()
-                .antMatchers("/interiorrank")
-                .permitAll()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/showrank")
-                .permitAll();
-        //stop here*/
+
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }

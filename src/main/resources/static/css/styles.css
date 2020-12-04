@@ -8,7 +8,10 @@ span.validationError {
     background-color: #5D6D7E;
     height: 700px;
 }
-
+.anotherwhy{
+    background-color: #5D6D7E;
+    height: 700px;
+}
 a:link{
     color: red;
     background-color: transparent;

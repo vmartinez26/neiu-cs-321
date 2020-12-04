@@ -1,6 +1,8 @@
 package valorank;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import valorank.Rank;
 
 import javax.persistence.*;

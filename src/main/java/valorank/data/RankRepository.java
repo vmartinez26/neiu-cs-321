@@ -8,6 +8,9 @@ import java.util.List;
 
 
 public interface RankRepository extends CrudRepository<Rank, String> {
+
+
+
     //List<Rank> findAllByRankById(Long id);
     //Rank findByName(String name);
     //System.out.print(Rank);

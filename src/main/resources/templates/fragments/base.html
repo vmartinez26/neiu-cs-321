@@ -41,6 +41,10 @@
                     th:if="${!#authentication.getName().equals('anonymousUser')}">
                     <a class="nav-link" th:href="@{/showrankname}">Leaderboard</a>
                 </li>
+                <li class="nav-item" th:classappend="${#request.getServletPath() == '/logout' ? 'active' : ''}"
+                    th:if="${!#authentication.getName().equals('anonymousUser')}">
+                    <a class="nav-link" th:href="@{/logout}">Logout</a>
+                </li>
             </ul>
         </div>
     </nav>

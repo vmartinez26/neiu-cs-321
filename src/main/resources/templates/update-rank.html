@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en"
-xmlns ="http://www.w3.org/1999/xhtml"
-xmlns:th="http://www.thymeleaf.org">
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head th:insert="fragments/base :: headContent"></head>
-<body class="why">
-
-<div th:replace="fragments/base :: navigation"></div>
-
-
+<body class="anotherwhy" style="background-color: #5D6D7E;">
+    <div th:replace="fragments/base :: navigation"></div>
+<!--
+    <img src="/images/defy.jpg" alt="">
+-->
     <div class="text-center">
-        <h1>Select Your Current Rank</h1>
-    <img class="img-fluid col-md-12 col-sm-8" th:src="@{images/VALORANT_ICONS_2.jpg}" alt=""/>
+        <h1>Update Your Current Rank</h1>
     </div>
+    <img class="img-fluid col-md-12 col-sm-8" th:src="@{/images/VALORANT_ICONS_2.jpg}" alt=""/>
+
     <h2 class="text-center">Declare your current rank</h2>
 
-    <form method="post" action=""th:object="${rankName}">
+    <form method="post" th:action="@{/modify/update/{rankId}(rankId=${rankName.id})}" action=""th:object="${rankName}">
         <span class="validationError"
               th:if="${#fields.hasErrors('ranks')}"
-        th:errors="*{ranks}">Rank Error</span>
+              th:errors="*{ranks}">Rank Error</span>
         <div class="container">
 
             <div class="row">
@@ -97,11 +99,11 @@ xmlns:th="http://www.thymeleaf.org">
         </div>
         <div>
             <div class="row form-group justify-content-start">
-            <label class="col-form-label col-2  font-weight-bold" for="ign">What is your in game name?</label>
-            <input class="form-control col-5 col-md-2" type="text" th:field="*{name}" id="ign"/>
-            <span class="validationError"
-            th:if="${#fields.hasErrors('name')}"
-            th:errors="*{name}">Name Error</span>
+                <label class="col-form-label col-2  font-weight-bold" for="ign">What is your in game name?</label>
+                <input class="form-control col-5 col-md-2" type="text" th:field="*{name}" id="ign"/>
+                <span class="validationError"
+                      th:if="${#fields.hasErrors('name')}"
+                      th:errors="*{name}">Name Error</span>
             </div>
             <br/><br/>
 
@@ -117,22 +119,20 @@ xmlns:th="http://www.thymeleaf.org">
                 <span class="validationError" th:if="${#fields.hasErrors('lastTenGameW')}"
                       th:errors="*{lastTenGameW}">Ten Games Played error</span><br/><br/>
             </div>
-
+            <div>
             <div class="row form-group justify-content-start">
-            <button class="btn btn-outline-danger btn-lg">Submit your current rank!</button>
+                <button class="col-sm-6 btn btn-outline-danger btn-lg col-6">Update your current rank!</button>
+                <a th:href="@{/showrankname}" class="col-sm-6 col-6  btn btn-outline-danger btn-lg">Cancel</a>
+
+            </div>
             </div>
         </div>
 
-   <!--         <a th:href="@{/showrankname}">See where you are currently ranked!</a>-->
 
     </form>
-    <!--I thought I had to do this code three times but when I rank the first one
-     all my items were here NICE!-->
-    <div th:replace="fragments/base :: foot"></div>
-
-    <div th:replace="fragments/base :: scripts"></div>
 
 
-
+    <div th:insert="fragments/base :: foot"></div>
+    <div th:insert="fragments/base :: scripts"></div>
 </body>
 </html>
