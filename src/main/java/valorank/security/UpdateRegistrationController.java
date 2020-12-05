@@ -29,11 +29,16 @@ public class UpdateRegistrationController {
     }
 
     @GetMapping("/{userId}")
-    public String updateUser(@PathVariable("userId") long id, Model model){
-        User user = userRepository.findById(id).get();
-        model.addAttribute("user", user);
+    public String updateUser(@PathVariable("userId") long id,User user, Model model){
+        RegistrationForm registrationForm = new RegistrationForm();
+        registrationForm.setUsername(user.getUsername());
+        registrationForm.setPassword(user.getPassword());
+        registrationForm.setEmail(user.getEmail());
+        registrationForm.setCity(user.getCity());
+        registrationForm.setState(user.getState());
+        //userRepository.save(registrationForm);
         return "update-user";
     }
 
-    
+
 }
