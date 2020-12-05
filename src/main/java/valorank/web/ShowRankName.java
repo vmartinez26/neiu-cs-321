@@ -51,10 +51,6 @@ public class ShowRankName {
         model.addAttribute("indUser", indUser);
 
     }
-  /*  @GetMapping
-    public String ranksOfUser(@AuthenticationPrincipal User user, Model model){
-        Pageable pageable = PageRequest.of(0,rankProps.getPageSize());
-        model.addAttribute("rankname", rankNameRepo.fi(user,pageable));
-    }*/
+
 
 }

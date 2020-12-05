@@ -33,9 +33,7 @@ public class RankName {
     //@Size(min = 0,max = 10, message = "Please enter a number that is 10 or less" )
     private int lastTenGameW;
 
-    //could add a method to count num of days in specific rank
 
-    //OnetoOne????? One IGN can only have rank
     @ManyToOne(targetEntity = Rank.class)
 
     private Rank ranks;
