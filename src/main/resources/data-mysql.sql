@@ -1,4 +1,4 @@
-/*
+
 delete from Rank;
 delete from Rank_Name;
 delete from User;
@@ -49,4 +49,4 @@ values ( 'IM2', 'Immortal Two', 'IMMORTAL' );
 insert into Rank(id, name, type)
 values ( 'IM3', 'Immortal Three', 'IMMORTAL' );
 insert into Rank(id, name, type)
-values ( 'Rad', 'Radiant', 'RADIANT' );*/
+values ( 'Rad', 'Radiant', 'RADIANT' );
